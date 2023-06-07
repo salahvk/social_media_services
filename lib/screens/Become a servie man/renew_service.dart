@@ -341,11 +341,11 @@ class _RenewServicePageState extends State<RenewServicePage> {
                                                 0, 10, 0, 10),
                                             child: DropdownButtonHideUnderline(
                                               child: DropdownButton2(
-                                                // icon: const Icon(
-                                                //   Icons.keyboard_arrow_down,
-                                                //   size: 35,
-                                                //   color: ColorManager.black,
-                                                // ),
+                                                icon: const Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  size: 35,
+                                                  color: ColorManager.black,
+                                                ),
                                                 hint: Text('Enter List',
                                                     style: getRegularStyle(
                                                         color: const Color
@@ -395,33 +395,16 @@ class _RenewServicePageState extends State<RenewServicePage> {
                                                                         ?.serviceName ??
                                                                     'null'),
                                                           ),
-                                                // buttonHeight: 40,
-                                                // // buttonWidth: 140,
-                                                // itemHeight: 40,
-                                                // buttonPadding:
-                                                //     const EdgeInsets.fromLTRB(
-                                                //         12, 0, 8, 0),
-                                                // // dropdownWidth: size.width,
-                                                // itemPadding:
-                                                //     const EdgeInsets.fromLTRB(
-                                                //         12, 0, 12, 0),
-                                                buttonStyleData:
-                                                    const ButtonStyleData(
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                          12, 0, 8, 0),
-                                                  height: 40,
-                                                  // width: 140,
-                                                ),
-                                                menuItemStyleData:
-                                                    const MenuItemStyleData(
-                                                  height: 40,
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      12, 0, 12, 0),
-                                                ),
-                                                // dropdownStyleData: DropdownStyleData(
-                                                //   maxHeight: h * .6,
-                                                // ),
+                                                buttonHeight: 40,
+                                                // buttonWidth: 140,
+                                                itemHeight: 40,
+                                                buttonPadding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        12, 0, 8, 0),
+                                                // dropdownWidth: size.width,
+                                                itemPadding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        12, 0, 12, 0),
                                               ),
                                             ),
                                           ),

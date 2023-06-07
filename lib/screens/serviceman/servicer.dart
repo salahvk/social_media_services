@@ -10,6 +10,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media_services/API/get_region_info.dart';
 import 'package:social_media_services/API/home/get_service_man.dart';
+import 'package:social_media_services/animations/animtions.dart';
 import 'package:social_media_services/components/assets_manager.dart';
 import 'package:social_media_services/components/color_manager.dart';
 import 'package:social_media_services/components/routes_manager.dart';
@@ -401,144 +402,116 @@ class _ServicerPageState extends State<ServicerPage> {
                           ),
                           // * Country & Region
                           isAdvancedSearchEnabled
-                              ? Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 10, 0, 0),
-                                              child: TitleWidget(
-                                                  name: str.s_country),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 10, 0, 0),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 10.0,
-                                                      color:
-                                                          Colors.grey.shade300,
-                                                      // offset: const Offset(5, 8.5),
-                                                    ),
-                                                  ],
-                                                ),
+                              ? FadeCustomAnimation(
+                                  delay: .001,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        0, 10, 0, 0),
+                                                child: TitleWidget(
+                                                    name: str.s_country),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        0, 10, 0, 0),
                                                 child: Container(
-                                                  width: size.width * .44,
-                                                  height: 50,
                                                   decoration: BoxDecoration(
-                                                      color: ColorManager
-                                                          .whiteColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8)),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(0, 10, 0, 10),
-                                                    child:
-                                                        DropdownButtonHideUnderline(
-                                                      child: DropdownButton2<
-                                                              String>(
-                                                          isExpanded: true,
-                                                          // focusNode: nfocus,
-                                                          // icon: const Icon(
-                                                          //   Icons
-                                                          //       .keyboard_arrow_down,
-                                                          //   size: 35,
-                                                          //   color:
-                                                          //       ColorManager
-                                                          //           .black,
-                                                          // ),
-                                                          hint: Text(
-                                                              str.ae_country_h,
-                                                              style: getRegularStyle(
-                                                                  color: const Color
-                                                                          .fromARGB(
-                                                                      255,
-                                                                      173,
-                                                                      173,
-                                                                      173),
-                                                                  fontSize:
-                                                                      15)),
-                                                          items: r3
-                                                              .map((item) =>
-                                                                  DropdownMenuItem<
-                                                                      String>(
-                                                                    value: item,
-                                                                    child: Text(
-                                                                        item,
-                                                                        style: getRegularStyle(
-                                                                            color:
-                                                                                ColorManager.black,
-                                                                            fontSize: 15)),
-                                                                  ))
-                                                              .toList(),
-                                                          value: selectedValue,
-                                                          onChanged:
-                                                              (value) async {
-                                                            setState(() {
-                                                              selectedValue =
-                                                                  value
-                                                                      as String;
-                                                            });
-                                                            await s(
-                                                                selectedValue);
-                                                            defRegion = null;
-                                                            await getRegionData(
-                                                                context,
-                                                                countryid);
-                                                            setState(() {});
-                                                          },
-                                                          // buttonHeight: 40,
-                                                          // dropdownMaxHeight:
-                                                          //     size.height *
-                                                          //         .6,
-                                                          // // buttonWidth: 140,
-                                                          // itemHeight: 40,
-                                                          // buttonPadding:
-                                                          //     const EdgeInsets.fromLTRB(
-                                                          //         12, 0, 8, 0),
-                                                          // // dropdownWidth: size.width,
-                                                          // itemPadding:
-                                                          //     const EdgeInsets.fromLTRB(
-                                                          //         12, 0, 12, 0),
-                                                          buttonStyleData:
-                                                              const ButtonStyleData(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .fromLTRB(
-                                                                    12,
-                                                                    0,
-                                                                    8,
-                                                                    0),
-                                                            height: 40,
-                                                            // width: 140,
-                                                          ),
-                                                          menuItemStyleData:
-                                                              const MenuItemStyleData(
-                                                            height: 40,
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(12, 0,
-                                                                    12, 0),
-                                                          ),
-                                                          dropdownStyleData:
-                                                              DropdownStyleData(
-                                                            maxHeight:
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 10.0,
+                                                        color: Colors
+                                                            .grey.shade300,
+                                                        // offset: const Offset(5, 8.5),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: Container(
+                                                    width: size.width * .44,
+                                                    height: 50,
+                                                    decoration: BoxDecoration(
+                                                        color: ColorManager
+                                                            .whiteColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8)),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          0, 10, 0, 10),
+                                                      child:
+                                                          DropdownButtonHideUnderline(
+                                                        child: DropdownButton2(
+                                                            isExpanded: true,
+                                                            // focusNode: nfocus,
+                                                            icon: const Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down,
+                                                              size: 35,
+                                                              color:
+                                                                  ColorManager
+                                                                      .black,
+                                                            ),
+                                                            hint: Text(str.ae_country_h,
+                                                                style: getRegularStyle(
+                                                                    color: const Color.fromARGB(
+                                                                        255,
+                                                                        173,
+                                                                        173,
+                                                                        173),
+                                                                    fontSize:
+                                                                        15)),
+                                                            items: r3
+                                                                .map(
+                                                                    (item) => DropdownMenuItem<
+                                                                            String>(
+                                                                          value:
+                                                                              item,
+                                                                          child: Text(
+                                                                              item,
+                                                                              style: getRegularStyle(color: ColorManager.black, fontSize: 15)),
+                                                                        ))
+                                                                .toList(),
+                                                            value:
+                                                                selectedValue,
+                                                            onChanged:
+                                                                (value) async {
+                                                              setState(() {
+                                                                selectedValue =
+                                                                    value
+                                                                        as String;
+                                                              });
+                                                              await s(
+                                                                  selectedValue);
+                                                              defRegion = null;
+                                                              await getRegionData(
+                                                                  context,
+                                                                  countryid);
+                                                              setState(() {});
+                                                            },
+                                                            buttonHeight: 40,
+                                                            dropdownMaxHeight:
                                                                 size.height *
                                                                     .6,
-                                                          ),
-                                                          dropdownSearchData:
-                                                              DropdownSearchData(
+                                                            // buttonWidth: 140,
+                                                            itemHeight: 40,
+                                                            buttonPadding:
+                                                                const EdgeInsets.fromLTRB(
+                                                                    12, 0, 8, 0),
+                                                            // dropdownWidth: size.width,
+                                                            itemPadding:
+                                                                const EdgeInsets.fromLTRB(
+                                                                    12, 0, 12, 0),
                                                             searchController:
                                                                 AddressEditControllers
                                                                     .searchController,
@@ -601,377 +574,29 @@ class _ServicerPageState extends State<ServicerPage> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            searchMatchFn: (item,
-                                                                searchValue) {
+                                                            searchMatchFn: (item, searchValue) {
                                                               return (item.value
                                                                   .toString()
                                                                   .toLowerCase()
                                                                   .contains(
                                                                       searchValue));
                                                             },
-                                                          ),
-
-                                                          //This to clear the search value when you close the menu
-                                                          onMenuStateChange:
-                                                              (isOpen) {
-                                                            if (!isOpen) {
-                                                              AddressEditControllers
-                                                                  .searchController
-                                                                  .clear();
-                                                            }
-                                                          }),
+                                                            //This to clear the search value when you close the menu
+                                                            onMenuStateChange: (isOpen) {
+                                                              if (!isOpen) {
+                                                                AddressEditControllers
+                                                                    .searchController
+                                                                    .clear();
+                                                              }
+                                                            }),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 10, 0, 0),
-                                              child: TitleWidget(
-                                                  name: str.s_region),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 10, 0, 0),
-                                              child: Container(
-                                                width: size.width * .44,
-                                                height: mob ? 50 : 35,
-                                                decoration: BoxDecoration(
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 10.0,
-                                                        color: Colors
-                                                            .grey.shade300,
-                                                        // offset: const Offset(5, 8.5),
-                                                      ),
-                                                    ],
-                                                    color:
-                                                        ColorManager.whiteColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8)),
-                                                child:
-                                                    //  TextField(
-                                                    //   controller:
-                                                    //       ServiceControllers
-                                                    //           .regionController,
-                                                    //   decoration: InputDecoration(
-                                                    //       hintText: str.s_region,
-                                                    //       hintStyle: getRegularStyle(
-                                                    //           color: const Color
-                                                    //                   .fromARGB(
-                                                    //               255,
-                                                    //               173,
-                                                    //               173,
-                                                    //               173),
-                                                    //           fontSize: Responsive
-                                                    //                   .isMobile(
-                                                    //                       context)
-                                                    //               ? 15
-                                                    //               : 10)),
-                                                    // ),
-                                                    DropdownButtonHideUnderline(
-                                                  child: DropdownButton2(
-                                                    isExpanded: true,
-                                                    // focusNode: nfocus,
-                                                    // icon: const Icon(
-                                                    //   Icons
-                                                    //       .keyboard_arrow_down,
-                                                    //   size: 35,
-                                                    //   color:
-                                                    //       ColorManager.black,
-                                                    // ),
-                                                    hint: Text(str.p_region_h,
-                                                        style: getRegularStyle(
-                                                            color: const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                173,
-                                                                173,
-                                                                173),
-                                                            fontSize: 15)),
-                                                    items: provider
-                                                        .regionInfoModel
-                                                        ?.regions!
-                                                        .map((item) =>
-                                                            DropdownMenuItem<
-                                                                String>(
-                                                              value:
-                                                                  item.cityName,
-                                                              child: Text(
-                                                                  item.cityName ??
-                                                                      '',
-                                                                  style: getRegularStyle(
-                                                                      color: ColorManager
-                                                                          .black,
-                                                                      fontSize:
-                                                                          15)),
-                                                            ))
-                                                        .toList(),
-                                                    // value: defRegion,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        defRegion =
-                                                            value as String;
-                                                      });
-                                                      ProfileServiceControllers
-                                                              .regionController
-                                                              .text =
-                                                          defRegion ?? '';
-                                                      // s(selectedValue);
-                                                    },
-                                                    // buttonHeight: 50,
-                                                    // dropdownMaxHeight:
-                                                    //     size.height * .6,
-                                                    // // buttonWidth: 140,
-                                                    // itemHeight: 40,
-                                                    // buttonPadding:
-                                                    //     const EdgeInsets
-                                                    //             .fromLTRB(
-                                                    //         12, 0, 8, 0),
-                                                    // // dropdownWidth: size.width,
-                                                    // itemPadding:
-                                                    //     const EdgeInsets
-                                                    //             .fromLTRB(
-                                                    //         12, 0, 12, 0),
-                                                    buttonStyleData:
-                                                        const ButtonStyleData(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          12, 0, 8, 0),
-                                                      height: 50,
-                                                      // width: 140,
-                                                    ),
-                                                    menuItemStyleData:
-                                                        const MenuItemStyleData(
-                                                      height: 40,
-                                                      padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              12, 0, 12, 0),
-                                                    ),
-                                                    dropdownStyleData:
-                                                        DropdownStyleData(
-                                                      maxHeight:
-                                                          size.height * .6,
-                                                    ),
-                                                    // searchController:
-                                                    //     AddressEditControllers
-                                                    //         .searchController,
-                                                    // searchInnerWidget: Padding(
-                                                    //   padding:
-                                                    //       const EdgeInsets.only(
-                                                    //     top: 8,
-                                                    //     bottom: 4,
-                                                    //     right: 8,
-                                                    //     left: 8,
-                                                    //   ),
-                                                    //   child: TextFormField(
-                                                    //     controller:
-                                                    //         AddressEditControllers
-                                                    //             .searchController,
-                                                    //     decoration: InputDecoration(
-                                                    //       isDense: true,
-                                                    //       contentPadding:
-                                                    //           const EdgeInsets
-                                                    //               .symmetric(
-                                                    //         horizontal: 10,
-                                                    //         vertical: 8,
-                                                    //       ),
-                                                    //       // TODO: localisation
-                                                    //       hintText:
-                                                    //           str.s_search_country,
-                                                    //       hintStyle:
-                                                    //           const TextStyle(
-                                                    //               fontSize: 12),
-                                                    //       border:
-                                                    //           OutlineInputBorder(
-                                                    //         borderRadius:
-                                                    //             BorderRadius
-                                                    //                 .circular(8),
-                                                    //       ),
-                                                    //     ),
-                                                    //   ),
-                                                    // ),
-                                                    // searchMatchFn:
-                                                    //     (item, searchValue) {
-                                                    //   return (item.value
-                                                    //       .toString()
-                                                    //       .toLowerCase()
-                                                    //       .contains(searchValue));
-                                                    // },
-                                                    customButton: defRegion ==
-                                                            null
-                                                        ? null
-                                                        : Row(
-                                                            children: [
-                                                              Center(
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .fromLTRB(
-                                                                          10,
-                                                                          15,
-                                                                          10,
-                                                                          15),
-                                                                  child: Text(
-                                                                      defRegion ??
-                                                                          ''),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                    //This to clear the search value when you close the menu
-                                                    // onMenuStateChange: (isOpen) {
-                                                    //   if (!isOpen) {
-                                                    //     AddressEditControllers
-                                                    //         .searchController
-                                                    //         .clear();
-                                                    //   }
-                                                    // }
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    // * Google map
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 10, 0, 0),
-                                              child:
-                                                  TitleWidget(name: str.s_map),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 10, 0, 0),
-                                              child: Container(
-                                                width: size.width * .44,
-                                                height: mob ? 50 : 35,
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 10.0,
-                                                      color:
-                                                          Colors.grey.shade300,
-                                                      // offset: const Offset(5, 8.5),
-                                                    ),
-                                                  ],
-                                                ),
-                                                child: TextField(
-                                                  readOnly: true,
-                                                  style: const TextStyle(
-                                                      fontSize: 12),
-                                                  controller: ServiceControllers
-                                                      .mapController,
-                                                  decoration: InputDecoration(
-                                                      suffixIcon: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(right: 5),
-                                                        child: SizedBox(
-                                                          width:
-                                                              size.width * .15,
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .end,
-                                                            children: [
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  final servicerProvider = Provider.of<
-                                                                          ServicerProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false);
-                                                                  ServiceControllers
-                                                                      .mapController
-                                                                      .clear();
-                                                                  servicerProvider
-                                                                          .servicerLatitude =
-                                                                      null;
-                                                                },
-                                                                child: const Icon(
-                                                                    size: 25,
-                                                                    Icons
-                                                                        .close),
-                                                              ),
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  Navigator.push(
-                                                                      context,
-                                                                      MaterialPageRoute(
-                                                                          builder:
-                                                                              (ctx) {
-                                                                    return const SearchServicerLocation();
-                                                                  }));
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                        width: mob
-                                                                            ? 30
-                                                                            : 20,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(5),
-                                                                          color:
-                                                                              ColorManager.primary,
-                                                                        ),
-                                                                        height: mob
-                                                                            ? 30
-                                                                            : 25,
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .add_location_alt_outlined,
-                                                                          color:
-                                                                              ColorManager.whiteColor,
-                                                                          size: mob
-                                                                              ? 20
-                                                                              : 15,
-                                                                        )),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      hintText: 'Map',
-                                                      hintStyle: getRegularStyle(
-                                                          color: const Color
-                                                                  .fromARGB(255,
-                                                              173, 173, 173),
-                                                          fontSize: Responsive
-                                                                  .isMobile(
-                                                                      context)
-                                                              ? 15
-                                                              : 10)),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
+                                            ],
+                                          ),
+                                          Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
@@ -980,7 +605,208 @@ class _ServicerPageState extends State<ServicerPage> {
                                                     const EdgeInsets.fromLTRB(
                                                         0, 10, 0, 0),
                                                 child: TitleWidget(
-                                                    name: str.s_state),
+                                                    name: str.s_region),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        0, 10, 0, 0),
+                                                child: Container(
+                                                  width: size.width * .44,
+                                                  height: mob ? 50 : 35,
+                                                  decoration: BoxDecoration(
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          blurRadius: 10.0,
+                                                          color: Colors
+                                                              .grey.shade300,
+                                                          // offset: const Offset(5, 8.5),
+                                                        ),
+                                                      ],
+                                                      color: ColorManager
+                                                          .whiteColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8)),
+                                                  child:
+                                                      //  TextField(
+                                                      //   controller:
+                                                      //       ServiceControllers
+                                                      //           .regionController,
+                                                      //   decoration: InputDecoration(
+                                                      //       hintText: str.s_region,
+                                                      //       hintStyle: getRegularStyle(
+                                                      //           color: const Color
+                                                      //                   .fromARGB(
+                                                      //               255,
+                                                      //               173,
+                                                      //               173,
+                                                      //               173),
+                                                      //           fontSize: Responsive
+                                                      //                   .isMobile(
+                                                      //                       context)
+                                                      //               ? 15
+                                                      //               : 10)),
+                                                      // ),
+                                                      DropdownButtonHideUnderline(
+                                                    child: DropdownButton2(
+                                                      isExpanded: true,
+                                                      // focusNode: nfocus,
+                                                      icon: const Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down,
+                                                        size: 35,
+                                                        color:
+                                                            ColorManager.black,
+                                                      ),
+                                                      hint: Text(str.p_region_h,
+                                                          style: getRegularStyle(
+                                                              color: const Color
+                                                                      .fromARGB(
+                                                                  255,
+                                                                  173,
+                                                                  173,
+                                                                  173),
+                                                              fontSize: 15)),
+                                                      items: provider
+                                                          .regionInfoModel
+                                                          ?.regions!
+                                                          .map((item) =>
+                                                              DropdownMenuItem<
+                                                                  String>(
+                                                                value: item
+                                                                    .cityName,
+                                                                child: Text(
+                                                                    item.cityName ??
+                                                                        '',
+                                                                    style: getRegularStyle(
+                                                                        color: ColorManager
+                                                                            .black,
+                                                                        fontSize:
+                                                                            15)),
+                                                              ))
+                                                          .toList(),
+                                                      // value: defRegion,
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          defRegion =
+                                                              value as String;
+                                                        });
+                                                        ProfileServiceControllers
+                                                                .regionController
+                                                                .text =
+                                                            defRegion ?? '';
+                                                        // s(selectedValue);
+                                                      },
+                                                      buttonHeight: 50,
+                                                      dropdownMaxHeight:
+                                                          size.height * .6,
+                                                      // buttonWidth: 140,
+                                                      itemHeight: 40,
+                                                      buttonPadding:
+                                                          const EdgeInsets
+                                                                  .fromLTRB(
+                                                              12, 0, 8, 0),
+                                                      // dropdownWidth: size.width,
+                                                      itemPadding:
+                                                          const EdgeInsets
+                                                                  .fromLTRB(
+                                                              12, 0, 12, 0),
+                                                      // searchController:
+                                                      //     AddressEditControllers
+                                                      //         .searchController,
+                                                      // searchInnerWidget: Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.only(
+                                                      //     top: 8,
+                                                      //     bottom: 4,
+                                                      //     right: 8,
+                                                      //     left: 8,
+                                                      //   ),
+                                                      //   child: TextFormField(
+                                                      //     controller:
+                                                      //         AddressEditControllers
+                                                      //             .searchController,
+                                                      //     decoration: InputDecoration(
+                                                      //       isDense: true,
+                                                      //       contentPadding:
+                                                      //           const EdgeInsets
+                                                      //               .symmetric(
+                                                      //         horizontal: 10,
+                                                      //         vertical: 8,
+                                                      //       ),
+                                                      //       // TODO: localisation
+                                                      //       hintText:
+                                                      //           str.s_search_country,
+                                                      //       hintStyle:
+                                                      //           const TextStyle(
+                                                      //               fontSize: 12),
+                                                      //       border:
+                                                      //           OutlineInputBorder(
+                                                      //         borderRadius:
+                                                      //             BorderRadius
+                                                      //                 .circular(8),
+                                                      //       ),
+                                                      //     ),
+                                                      //   ),
+                                                      // ),
+                                                      // searchMatchFn:
+                                                      //     (item, searchValue) {
+                                                      //   return (item.value
+                                                      //       .toString()
+                                                      //       .toLowerCase()
+                                                      //       .contains(searchValue));
+                                                      // },
+                                                      customButton:
+                                                          defRegion == null
+                                                              ? null
+                                                              : Row(
+                                                                  children: [
+                                                                    Center(
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: const EdgeInsets.fromLTRB(
+                                                                            10,
+                                                                            15,
+                                                                            10,
+                                                                            15),
+                                                                        child: Text(defRegion ??
+                                                                            ''),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                      //This to clear the search value when you close the menu
+                                                      // onMenuStateChange: (isOpen) {
+                                                      //   if (!isOpen) {
+                                                      //     AddressEditControllers
+                                                      //         .searchController
+                                                      //         .clear();
+                                                      //   }
+                                                      // }
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      // * Google map
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        0, 10, 0, 0),
+                                                child: TitleWidget(
+                                                    name: str.s_map),
                                               ),
                                               Padding(
                                                 padding:
@@ -1000,12 +826,84 @@ class _ServicerPageState extends State<ServicerPage> {
                                                     ],
                                                   ),
                                                   child: TextField(
-                                                    // style: const TextStyle(),
+                                                    readOnly: true,
+                                                    style: const TextStyle(
+                                                        fontSize: 12),
                                                     controller:
                                                         ServiceControllers
-                                                            .stateController,
+                                                            .mapController,
                                                     decoration: InputDecoration(
-                                                        hintText: str.s_state,
+                                                        suffixIcon: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  right: 5),
+                                                          child: SizedBox(
+                                                            width: size.width *
+                                                                .15,
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .end,
+                                                              children: [
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    final servicerProvider = Provider.of<
+                                                                            ServicerProvider>(
+                                                                        context,
+                                                                        listen:
+                                                                            false);
+                                                                    ServiceControllers
+                                                                        .mapController
+                                                                        .clear();
+                                                                    servicerProvider
+                                                                            .servicerLatitude =
+                                                                        null;
+                                                                  },
+                                                                  child: const Icon(
+                                                                      size: 25,
+                                                                      Icons
+                                                                          .close),
+                                                                ),
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(builder:
+                                                                            (ctx) {
+                                                                      return const SearchServicerLocation();
+                                                                    }));
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                          width: mob
+                                                                              ? 30
+                                                                              : 20,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(5),
+                                                                            color:
+                                                                                ColorManager.primary,
+                                                                          ),
+                                                                          height: mob
+                                                                              ? 30
+                                                                              : 25,
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.add_location_alt_outlined,
+                                                                            color:
+                                                                                ColorManager.whiteColor,
+                                                                            size: mob
+                                                                                ? 20
+                                                                                : 15,
+                                                                          )),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        hintText: 'Map',
                                                         hintStyle: getRegularStyle(
                                                             color: const Color
                                                                     .fromARGB(
@@ -1021,67 +919,121 @@ class _ServicerPageState extends State<ServicerPage> {
                                                   ),
                                                 ),
                                               ),
-                                            ])
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    SizedBox(
-                                      width: size.width,
-                                      child: ElevatedButton(
-                                          onPressed: () async {
-                                            await searchServiceMan(
-                                                context,
-                                                widget.id.toString(),
-                                                countryid,
-                                                ServiceControllers
-                                                    .stateController.text,
-                                                ServiceControllers
-                                                    .regionController.text,
-                                                ServiceControllers
-                                                    .servicerController.text,
-                                                provider.isFourWheelerSelected &&
-                                                        provider
-                                                            .isTwoWheelerSelected
-                                                    ? ''
-                                                    : provider
-                                                            .isFourWheelerSelected
-                                                        ? 'four wheeler'
-                                                        : provider
-                                                                .isTwoWheelerSelected
-                                                            ? 'two wheeler'
-                                                            : '');
-                                            setState(() {});
-                                          },
-                                          child: Text(
-                                            str.s_search,
-                                            style: getSemiBoldtStyle(
-                                                color: ColorManager.whiteColor,
-                                                fontSize: 15),
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          isAdvancedSearchEnabled = false;
-                                        });
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: ColorManager.whiteColor,
-                                            borderRadius:
-                                                BorderRadius.circular(6)),
-                                        width: size.width,
-                                        height: 30,
-                                        child:
-                                            const Icon(Icons.keyboard_arrow_up),
+                                            ],
+                                          ),
+                                          Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 10, 0, 0),
+                                                  child: TitleWidget(
+                                                      name: str.s_state),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 10, 0, 0),
+                                                  child: Container(
+                                                    width: size.width * .44,
+                                                    height: mob ? 50 : 35,
+                                                    decoration: BoxDecoration(
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          blurRadius: 10.0,
+                                                          color: Colors
+                                                              .grey.shade300,
+                                                          // offset: const Offset(5, 8.5),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    child: TextField(
+                                                      // style: const TextStyle(),
+                                                      controller:
+                                                          ServiceControllers
+                                                              .stateController,
+                                                      decoration: InputDecoration(
+                                                          hintText: str.s_state,
+                                                          hintStyle: getRegularStyle(
+                                                              color: const Color
+                                                                      .fromARGB(
+                                                                  255,
+                                                                  173,
+                                                                  173,
+                                                                  173),
+                                                              fontSize: Responsive
+                                                                      .isMobile(
+                                                                          context)
+                                                                  ? 15
+                                                                  : 10)),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ])
+                                        ],
                                       ),
-                                    )
-                                  ],
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      SizedBox(
+                                        width: size.width,
+                                        child: ElevatedButton(
+                                            onPressed: () async {
+                                              await searchServiceMan(
+                                                  context,
+                                                  widget.id.toString(),
+                                                  countryid,
+                                                  ServiceControllers
+                                                      .stateController.text,
+                                                  ServiceControllers
+                                                      .regionController.text,
+                                                  ServiceControllers
+                                                      .servicerController.text,
+                                                  provider.isFourWheelerSelected &&
+                                                          provider
+                                                              .isTwoWheelerSelected
+                                                      ? ''
+                                                      : provider
+                                                              .isFourWheelerSelected
+                                                          ? 'four wheeler'
+                                                          : provider
+                                                                  .isTwoWheelerSelected
+                                                              ? 'two wheeler'
+                                                              : '');
+                                              setState(() {});
+                                            },
+                                            child: Text(
+                                              str.s_search,
+                                              style: getSemiBoldtStyle(
+                                                  color:
+                                                      ColorManager.whiteColor,
+                                                  fontSize: 15),
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            isAdvancedSearchEnabled = false;
+                                          });
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: ColorManager.whiteColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(6)),
+                                          width: size.width,
+                                          height: 30,
+                                          child: const Icon(
+                                              Icons.keyboard_arrow_up),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 )
                               : InkWell(
                                   onTap: () {

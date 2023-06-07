@@ -9,6 +9,7 @@ import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:social_media_services/API/endpoint.dart';
 import 'package:social_media_services/API/get_otp.dart';
+import 'package:social_media_services/animations/animtions.dart';
 import 'package:social_media_services/components/color_manager.dart';
 import 'package:social_media_services/components/styles_manager.dart';
 import 'package:social_media_services/controllers/controllers.dart';
@@ -80,137 +81,151 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: size.height * 0.36,
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            0, size.height * .13, 0, size.height * .04),
-                        child: SizedBox(
-                            width: size.width * .6,
-                            height: size.height * .2,
-                            child: SvgPicture.asset(
-                                'assets/logo/app_logo_green.svg')),
+                  FadeCustomAnimation(
+                    delay: .1,
+                    child: SizedBox(
+                      height: size.height * 0.36,
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              0, size.height * .13, 0, size.height * .04),
+                          child: SizedBox(
+                              width: size.width * .6,
+                              height: size.height * .2,
+                              child: SvgPicture.asset(
+                                  'assets/logo/app_logo_green.svg')),
+                        ),
                       ),
                     ),
                   ),
 
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, size.height * .025, 20, 0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 10.0,
-                            color: Colors.grey.shade300,
-                            offset: const Offset(5, 8.5),
-                          ),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: ColorManager.whiteColor,
-                          ),
-                          // width: 500,
-                          height: size.height * .07,
+                  FadeSlideCustomAnimation(
+                    isRight: lang == 'ar' ? true : false,
+                    delay: .1,
+                    child: Padding(
+                      padding:
+                          EdgeInsets.fromLTRB(20, size.height * .025, 20, 0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 10.0,
+                              color: Colors.grey.shade300,
+                              offset: const Offset(5, 8.5),
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: ColorManager.whiteColor,
+                            ),
+                            // width: 500,
+                            height: size.height * .07,
 
-                          child: Row(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    isPickerSelected = true;
-                                  });
-                                },
-                                child: SizedBox(
-                                    width: size.width * .18,
-                                    height: size.height * .07,
-                                    child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            0, 0, 3, 0),
-                                        child: Text(
-                                          "+${countryCode.toString()}",
-                                          style: getRegularStyle(
-                                              color: ColorManager
-                                                  .paymentPageColor2,
-                                              fontSize: 16),
-                                        ),
-                                      ),
-                                    )),
-                              ),
-                              Container(
-                                height: 40,
-                                width: .6,
-                                color: ColorManager.grayLight,
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Expanded(
+                            child: Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isPickerSelected = true;
+                                    });
+                                  },
                                   child: SizedBox(
-                                child: TextField(
-                                    keyboardType: TextInputType.phone,
-                                    controller:
-                                        PhoneNumberControllers.phoneNumCon,
-                                    style: const TextStyle(),
-                                    maxLength: 10,
-                                    decoration: InputDecoration(
-                                        counterText: '',
-                                        contentPadding: const EdgeInsets.only(
-                                            left: 0,
-                                            right: 10,
-                                            top: 0,
-                                            bottom: 0),
-                                        hintText: str.m_ent_mob_no,
-                                        hintStyle: getRegularStyle(
-                                            color: ColorManager.grayLight,
-                                            fontSize: 15))),
-                              ))
-                            ],
+                                      width: size.width * .18,
+                                      height: size.height * .07,
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 0, 3, 0),
+                                          child: Text(
+                                            "+${countryCode.toString()}",
+                                            style: getRegularStyle(
+                                                color: ColorManager
+                                                    .paymentPageColor2,
+                                                fontSize: 16),
+                                          ),
+                                        ),
+                                      )),
+                                ),
+                                Container(
+                                  height: 40,
+                                  width: .6,
+                                  color: ColorManager.grayLight,
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Expanded(
+                                    child: SizedBox(
+                                  child: TextField(
+                                      keyboardType: TextInputType.phone,
+                                      controller:
+                                          PhoneNumberControllers.phoneNumCon,
+                                      style: const TextStyle(),
+                                      maxLength: 10,
+                                      decoration: InputDecoration(
+                                          counterText: '',
+                                          contentPadding: const EdgeInsets.only(
+                                              left: 0,
+                                              right: 10,
+                                              top: 0,
+                                              bottom: 0),
+                                          hintText: str.m_ent_mob_no,
+                                          hintStyle: getRegularStyle(
+                                              color: ColorManager.grayLight,
+                                              fontSize: 15))),
+                                ))
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 40, 40, 30),
-                    child: Text(str.m_sub1,
-                        textAlign: TextAlign.center,
-                        style: getRegularStyle(
-                            color: ColorManager.grayLight, fontSize: 15)),
+                  FadeSlideCustomAnimation(
+                    isRight: lang == 'ar' ? true : false,
+                    delay: .1,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 40, 40, 30),
+                      child: Text(str.m_sub1,
+                          textAlign: TextAlign.center,
+                          style: getRegularStyle(
+                              color: ColorManager.grayLight, fontSize: 15)),
+                    ),
                   ),
-
-                  Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4.5,
-                            color: Colors.grey.shade400,
-                            offset: const Offset(6, 6),
-                          ),
-                        ],
-                      ),
-                      width: 220,
-                      height: 50,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(elevation: 0),
-                          onPressed: onContinue,
-                          child: loading
-                              ? const CircularProgressIndicator(
-                                  color: ColorManager.primary3,
-                                  backgroundColor: ColorManager.whiteColor,
-                                )
-                              : Text(
-                                  str.m_continue,
-                                  style: getRegularStyle(
-                                      color: ColorManager.whiteText,
-                                      fontSize: 18),
-                                ))),
-
+                  FadeSlideCustomAnimation(
+                    isRight: lang == 'ar' ? true : false,
+                    delay: .1,
+                    child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 4.5,
+                              color: Colors.grey.shade400,
+                              offset: const Offset(6, 6),
+                            ),
+                          ],
+                        ),
+                        width: 220,
+                        height: 50,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(elevation: 0),
+                            onPressed: onContinue,
+                            child: loading
+                                ? const CircularProgressIndicator(
+                                    color: ColorManager.primary3,
+                                    backgroundColor: ColorManager.whiteColor,
+                                  )
+                                : Text(
+                                    str.m_continue,
+                                    style: getRegularStyle(
+                                        color: ColorManager.whiteText,
+                                        fontSize: 18),
+                                  ))),
+                  ),
                   // const TroubleSign(),
                   // const Spacer(),
                   SizedBox(
@@ -224,173 +239,176 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                       top: size.height * .458,
                       right: lang == 'ar' ? size.width * .05 : null,
                       left: lang != 'ar' ? size.width * .05 : null,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 10.0,
-                              color: Colors.grey.shade300,
-                              offset: const Offset(3, 8.5),
-                            ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: ColorManager.primary2,
-                            ),
-                            height: 200,
-                            width: 200,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SizedBox(
-                                      height: 40,
-                                      child: TextField(
-                                        onChanged: (value) async {
-                                          String capitalize(String s) =>
-                                              s[0].toUpperCase() +
-                                              s.substring(1);
+                      child: FadeCustomAnimation(
+                        delay: .005,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 10.0,
+                                color: Colors.grey.shade300,
+                                offset: const Offset(3, 8.5),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: ColorManager.primary2,
+                              ),
+                              height: 200,
+                              width: 200,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: SizedBox(
+                                        height: 40,
+                                        child: TextField(
+                                          onChanged: (value) async {
+                                            String capitalize(String s) =>
+                                                s[0].toUpperCase() +
+                                                s.substring(1);
 
-                                          if (value.isEmpty) {
-                                            print('empty');
-                                            r = [];
-                                            setState(() {
-                                              r = (provider
-                                                  .countriesModel!.countries)!;
-                                            });
-                                          } else {
-                                            final lower = capitalize(value);
-
-                                            _onSearchChanged(lower);
-                                          }
-
-                                          // print(r);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: ListView.builder(
-                                        itemCount: r.length,
-                                        shrinkWrap: true,
-                                        itemBuilder: (ctx, index) {
-                                          return InkWell(
-                                            onTap: () {
+                                            if (value.isEmpty) {
+                                              print('empty');
+                                              r = [];
                                               setState(() {
-                                                countryCode = r[index]
-                                                    .phonecode
-                                                    .toString();
                                                 r = (provider.countriesModel!
                                                     .countries)!;
-                                                isPickerSelected = false;
                                               });
-                                            },
-                                            child: Container(
-                                              width: 100,
-                                              height: 35,
-                                              color: ColorManager.primary2,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        10, 0, 5, 0),
-                                                child: Row(
-                                                  children: [
-                                                    const SizedBox(
-                                                      width: 2,
-                                                    ),
-                                                    CachedNetworkImage(
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Container(
-                                                              width: 25,
-                                                              height: 20,
-                                                              color: ColorManager
-                                                                  .whiteColor,
-                                                            ),
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                              width: 25,
-                                                              height: 20,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                // shape: BoxShape.circle,
-                                                                image: DecorationImage(
-                                                                    image:
-                                                                        imageProvider,
-                                                                    fit: BoxFit
-                                                                        .cover),
-                                                              ),
-                                                            ),
-                                                        // width: 90,
-                                                        progressIndicatorBuilder:
-                                                            (context, url,
-                                                                progress) {
-                                                          return Container(
-                                                            color: ColorManager
-                                                                .black,
-                                                          );
-                                                        },
-                                                        imageUrl:
-                                                            '$endPoint${r[index].countryflag}'),
-                                                    const SizedBox(
-                                                      width: 2,
-                                                    ),
-                                                    Text(
-                                                        "+${r[index].phonecode.toString()}",
-                                                        style: getSemiBoldtStyle(
-                                                            color: ColorManager
-                                                                .background,
-                                                            fontSize: 13)),
-                                                    const SizedBox(
-                                                      width: 8,
-                                                    ),
-                                                    Text(
-                                                        overflow: TextOverflow
-                                                            .fade,
-                                                        // softWrap: true,
-                                                        r[index]
-                                                                    .countryName!
-                                                                    .length >
-                                                                22
-                                                            ? r[index]
-                                                                    .countryName
-                                                                    ?.substring(
-                                                                        0,
-                                                                        22) ??
-                                                                ''
-                                                            : r[index]
-                                                                    .countryName ??
-                                                                '',
-                                                        style:
-                                                            getSemiBoldtStyle(
+                                            } else {
+                                              final lower = capitalize(value);
+
+                                              _onSearchChanged(lower);
+                                            }
+
+                                            // print(r);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: ListView.builder(
+                                          itemCount: r.length,
+                                          shrinkWrap: true,
+                                          itemBuilder: (ctx, index) {
+                                            return InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  countryCode = r[index]
+                                                      .phonecode
+                                                      .toString();
+                                                  r = (provider.countriesModel!
+                                                      .countries)!;
+                                                  isPickerSelected = false;
+                                                });
+                                              },
+                                              child: Container(
+                                                width: 100,
+                                                height: 35,
+                                                color: ColorManager.primary2,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          10, 0, 5, 0),
+                                                  child: Row(
+                                                    children: [
+                                                      const SizedBox(
+                                                        width: 2,
+                                                      ),
+                                                      CachedNetworkImage(
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              Container(
+                                                                width: 25,
+                                                                height: 20,
                                                                 color: ColorManager
-                                                                    .background,
-                                                                fontSize: r[index]
-                                                                            .countryName!
-                                                                            .length <
-                                                                        12
-                                                                    ? 12
-                                                                    : r[index].countryName!.length <
-                                                                            20
-                                                                        ? 10
-                                                                        : r[index].countryName!.length >
-                                                                                25
-                                                                            ? 10
-                                                                            : 10)),
-                                                  ],
+                                                                    .whiteColor,
+                                                              ),
+                                                          imageBuilder: (context,
+                                                                  imageProvider) =>
+                                                              Container(
+                                                                width: 25,
+                                                                height: 20,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  // shape: BoxShape.circle,
+                                                                  image: DecorationImage(
+                                                                      image:
+                                                                          imageProvider,
+                                                                      fit: BoxFit
+                                                                          .cover),
+                                                                ),
+                                                              ),
+                                                          // width: 90,
+                                                          progressIndicatorBuilder:
+                                                              (context, url,
+                                                                  progress) {
+                                                            return Container(
+                                                              color:
+                                                                  ColorManager
+                                                                      .black,
+                                                            );
+                                                          },
+                                                          imageUrl:
+                                                              '$endPoint${r[index].countryflag}'),
+                                                      const SizedBox(
+                                                        width: 2,
+                                                      ),
+                                                      Text(
+                                                          "+${r[index].phonecode.toString()}",
+                                                          style: getSemiBoldtStyle(
+                                                              color: ColorManager
+                                                                  .background,
+                                                              fontSize: 13)),
+                                                      const SizedBox(
+                                                        width: 8,
+                                                      ),
+                                                      Text(
+                                                          overflow: TextOverflow
+                                                              .fade,
+                                                          // softWrap: true,
+                                                          r[index]
+                                                                      .countryName!
+                                                                      .length >
+                                                                  22
+                                                              ? r[index]
+                                                                      .countryName
+                                                                      ?.substring(
+                                                                          0,
+                                                                          22) ??
+                                                                  ''
+                                                              : r[index]
+                                                                      .countryName ??
+                                                                  '',
+                                                          style:
+                                                              getSemiBoldtStyle(
+                                                                  color: ColorManager
+                                                                      .background,
+                                                                  fontSize: r[index]
+                                                                              .countryName!
+                                                                              .length <
+                                                                          12
+                                                                      ? 12
+                                                                      : r[index].countryName!.length <
+                                                                              20
+                                                                          ? 10
+                                                                          : r[index].countryName!.length > 25
+                                                                              ? 10
+                                                                              : 10)),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        }),
-                                  ),
-                                ],
+                                            );
+                                          }),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

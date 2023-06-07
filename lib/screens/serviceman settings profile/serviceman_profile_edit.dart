@@ -450,7 +450,7 @@ class _ServiceManProfileEditPageState extends State<ServiceManProfileEditPage> {
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 10, 0, 10),
                                         child: DropdownButtonHideUnderline(
-                                          child: DropdownButton2<String>(
+                                          child: DropdownButton2(
                                               isExpanded: true,
                                               // focusNode: nfocus,
                                               // icon: const Icon(
@@ -487,84 +487,59 @@ class _ServiceManProfileEditPageState extends State<ServiceManProfileEditPage> {
                                                 });
                                                 s(selectedCountry);
                                               },
-                                              buttonStyleData:
-                                                  const ButtonStyleData(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        12, 0, 8, 0),
-                                                height: 40,
-                                                // width: 140,
-                                              ),
-                                              menuItemStyleData:
-                                                  const MenuItemStyleData(
-                                                height: 40,
-                                                padding: EdgeInsets.fromLTRB(
-                                                    12, 0, 12, 0),
-                                              ),
-                                              dropdownStyleData:
-                                                  DropdownStyleData(
-                                                maxHeight: size.height * .6,
-                                              ),
-                                              // buttonHeight: 40,
-                                              // dropdownMaxHeight:
-                                              //     size.height * .6,
-                                              // // buttonWidth: 140,
-                                              // itemHeight: 40,
-                                              // buttonPadding:
-                                              //     const EdgeInsets.fromLTRB(
-                                              //         12, 0, 8, 0),
-                                              // // dropdownWidth: size.width,
-                                              // itemPadding: const EdgeInsets
-                                              //     .fromLTRB(12, 0, 12, 0),
-                                              dropdownSearchData:
-                                                  DropdownSearchData(
-                                                searchController:
-                                                    ServiceManProfileEdit
-                                                        .searchController,
-                                                searchInnerWidget: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    top: 8,
-                                                    bottom: 4,
-                                                    right: 8,
-                                                    left: 8,
-                                                  ),
-                                                  child: TextFormField(
-                                                    controller:
-                                                        ServiceManProfileEdit
-                                                            .searchController,
-                                                    decoration: InputDecoration(
-                                                      isDense: true,
-                                                      contentPadding:
-                                                          const EdgeInsets
-                                                              .symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 8,
-                                                      ),
-                                                      // TODO: localisation
-                                                      hintText:
-                                                          str.s_search_country,
-                                                      hintStyle:
-                                                          const TextStyle(
-                                                              fontSize: 12),
-                                                      border:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
+                                              buttonHeight: 40,
+                                              dropdownMaxHeight:
+                                                  size.height * .6,
+                                              // buttonWidth: 140,
+                                              itemHeight: 40,
+                                              buttonPadding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      12, 0, 8, 0),
+                                              // dropdownWidth: size.width,
+                                              itemPadding: const EdgeInsets
+                                                  .fromLTRB(12, 0, 12, 0),
+                                              searchController:
+                                                  ServiceManProfileEdit
+                                                      .searchController,
+                                              searchInnerWidget: Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 8,
+                                                  bottom: 4,
+                                                  right: 8,
+                                                  left: 8,
+                                                ),
+                                                child: TextFormField(
+                                                  controller:
+                                                      ServiceManProfileEdit
+                                                          .searchController,
+                                                  decoration: InputDecoration(
+                                                    isDense: true,
+                                                    contentPadding:
+                                                        const EdgeInsets
+                                                            .symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 8,
+                                                    ),
+                                                    // TODO: localisation
+                                                    hintText:
+                                                        str.s_search_country,
+                                                    hintStyle: const TextStyle(
+                                                        fontSize: 12),
+                                                    border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
                                                   ),
                                                 ),
-                                                searchMatchFn:
-                                                    (item, searchValue) {
-                                                  return (item.value
-                                                      .toString()
-                                                      .toLowerCase()
-                                                      .contains(searchValue));
-                                                },
                                               ),
-
+                                              searchMatchFn:
+                                                  (item, searchValue) {
+                                                return (item.value
+                                                    .toString()
+                                                    .toLowerCase()
+                                                    .contains(searchValue));
+                                              },
                                               //This to clear the search value when you close the menu
                                               onMenuStateChange: (isOpen) {
                                                 if (!isOpen) {
@@ -899,87 +874,45 @@ class _ServiceManProfileEditPageState extends State<ServiceManProfileEditPage> {
                                 });
                                 print(value);
                               },
-                              // icon: const Icon(
-                              //   Icons.arrow_forward_ios_outlined,
-                              // ),
-
-                              // iconSize: 14,
-                              // iconEnabledColor: ColorManager.primary,
-                              // iconDisabledColor: Colors.grey,
-                              buttonStyleData: ButtonStyleData(
-                                height: 40,
-                                width: size.width * .5,
-                                padding:
-                                    const EdgeInsets.only(left: 14, right: 14),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 10.0,
-                                      color: Colors.grey.shade300,
-                                      offset: const Offset(5, 8.5),
-                                    ),
-                                  ],
-                                  // border: Border.all(
-                                  //   color: Colors.black26,
-                                  // ),
-                                  color: ColorManager.whiteColor,
-                                ),
+                              icon: const Icon(
+                                Icons.arrow_forward_ios_outlined,
                               ),
-                              // buttonHeight: 40,
-                              // buttonWidth: size.width * .5,
-                              // buttonPadding:
-                              //     const EdgeInsets.only(left: 14, right: 14),
-                              // buttonDecoration: BoxDecoration(
-                              //   borderRadius: BorderRadius.circular(4),
-                              //   boxShadow: [
-                              //     BoxShadow(
-                              //       blurRadius: 10.0,
-                              //       color: Colors.grey.shade300,
-                              //       offset: const Offset(5, 8.5),
-                              //     ),
-                              //   ],
-                              //   // border: Border.all(
-                              //   //   color: Colors.black26,
-                              //   // ),
-                              //   color: ColorManager.whiteColor,
-                              // ),
+                              iconSize: 14,
+                              iconEnabledColor: ColorManager.primary,
+                              iconDisabledColor: Colors.grey,
+                              buttonHeight: 40,
+                              buttonWidth: size.width * .5,
+                              buttonPadding:
+                                  const EdgeInsets.only(left: 14, right: 14),
+                              buttonDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 10.0,
+                                    color: Colors.grey.shade300,
+                                    offset: const Offset(5, 8.5),
+                                  ),
+                                ],
+                                // border: Border.all(
+                                //   color: Colors.black26,
+                                // ),
+                                color: ColorManager.whiteColor,
+                              ),
                               // buttonElevation: 2,
-                              // buttonStyleData:
-                              //                 const ButtonStyleData(
-                              //               padding: const EdgeInsets.fromLTRB(
-                              //                   12, 0, 12, 0),
-                              //               height: 50,
-                              //               width: 140,
-                              //             ),
-                              menuItemStyleData: const MenuItemStyleData(
-                                height: 40,
-                                padding: EdgeInsets.fromLTRB(14, 0, 14, 0),
+                              itemHeight: 40,
+                              itemPadding:
+                                  const EdgeInsets.only(left: 14, right: 14),
+                              dropdownMaxHeight: 200,
+                              dropdownWidth: size.width * .5,
+                              dropdownPadding: null,
+                              dropdownDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14),
+                                color: ColorManager.background,
                               ),
-                              dropdownStyleData: DropdownStyleData(
-                                maxHeight: 200,
-                                width: size.width * .5,
-                                padding: null,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(14),
-                                  color: ColorManager.background,
-                                ),
-                                elevation: 8,
-                                // scrollbarRadius: const Radius.circular(40),
-                                // scrollbarThickness: 6,
-                                // scrollbarAlwaysShow: true,
-                              ),
-                              // itemHeight: 40,
-                              // itemPadding:
-                              //     const EdgeInsets.only(left: 14, right: 14),
-                              // dropdownMaxHeight: 200,
-                              // dropdownWidth: size.width * .5,
-                              // dropdownPadding: null,
-                              // dropdownDecoration: BoxDecoration(
-                              //   borderRadius: BorderRadius.circular(14),
-                              //   color: ColorManager.background,
-                              // ),
-
+                              dropdownElevation: 8,
+                              scrollbarRadius: const Radius.circular(40),
+                              scrollbarThickness: 6,
+                              scrollbarAlwaysShow: true,
                               // offset: const Offset(-20, 0),
                             ),
                           ),

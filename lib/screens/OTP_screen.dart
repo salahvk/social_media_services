@@ -16,6 +16,7 @@ import 'package:social_media_services/API/get_chat_list.dart';
 import 'package:social_media_services/API/get_serviceManProfileDetails.dart';
 import 'package:social_media_services/API/home/get_home.dart';
 import 'package:social_media_services/API/get_otp.dart';
+import 'package:social_media_services/animations/animtions.dart';
 import 'package:social_media_services/components/color_manager.dart';
 import 'package:social_media_services/components/styles_manager.dart';
 import 'package:social_media_services/controllers/controllers.dart';
@@ -69,120 +70,132 @@ class _OTPscreenState extends State<OTPscreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: Responsive.isMini(context) ? h * 0.46 : h * .36,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                      width: w * .6,
-                      height: h * .2,
-                      child:
-                          SvgPicture.asset('assets/logo/app_logo_green.svg')),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, h * .01, 0, 0),
-                    child: Text(str.o_verification,
-                        style: getBoldtStyle(
-                            color: ColorManager.black, fontSize: 20)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                    child: Text(
-                        "${str.o_pls_type} \n+${otpProvider.countryCode} ${otpProvider.phoneNo}",
-                        textAlign: TextAlign.center,
-                        style: getRegularStyle(
-                            color: const Color(0xff9f9f9f),
-                            fontSize: mob ? 15 : 12)),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(10, h * .03, 10, 0),
-              child: Pinput(
-                defaultPinTheme: defaultPinTheme,
-                separator: const SizedBox(
-                  width: 5,
-                ),
-                length: 6,
-                controller: PhoneNumberControllers.otpCon,
-                focusedPinTheme: focusedPinTheme,
-                // validator: (s) {
-                //   return s == '2222' ? null : 'Pin is incorrect';
-                // },
-                pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
-                showCursor: true,
-                onCompleted: (pin) {
-                  verifyNow();
-                },
-              ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, h * .05, 0, h * .05),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(str.o_dont,
-                      style: getRegularStyle(
-                          color: const Color(0xff9f9f9f), fontSize: 15)),
-                  InkWell(
-                    onTap: () async {
-                      getOtp(context, {otpProvider.countryCode},
-                          {otpProvider.phoneNo}, true);
-                      setState(() {
-                        isResendButtonClicked = true;
-                      });
-                      await Future.delayed(const Duration(seconds: 2));
-                      setState(() {
-                        isResendButtonClicked = false;
-                      });
-                    },
-                    child: isResendButtonClicked
-                        ? const SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: ColorManager.primary3,
-                              backgroundColor: ColorManager.whiteColor,
-                            ),
-                          )
-                        : Text(str.o_resend,
+                height: Responsive.isMini(context) ? h * 0.46 : h * .36,
+                child: FadeCustomAnimation(
+                  delay: .1,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          width: w * .6,
+                          height: h * .2,
+                          child: SvgPicture.asset(
+                              'assets/logo/app_logo_green.svg')),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, h * .01, 0, 0),
+                        child: Text(str.o_verification,
+                            style: getBoldtStyle(
+                                color: ColorManager.black, fontSize: 20)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: Text(
+                            "${str.o_pls_type} \n+${otpProvider.countryCode} ${otpProvider.phoneNo}",
+                            textAlign: TextAlign.center,
                             style: getRegularStyle(
-                                color: ColorManager.primary, fontSize: 15)),
+                                color: const Color(0xff9f9f9f),
+                                fontSize: mob ? 15 : 12)),
+                      ),
+                    ],
                   ),
-                ],
+                )),
+            FadeSlideCustomAnimation(
+              delay: .1,
+              isRight: lang == 'ar' ? true : false,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(10, h * .03, 10, 0),
+                child: Pinput(
+                  defaultPinTheme: defaultPinTheme,
+                  separator: const SizedBox(
+                    width: 5,
+                  ),
+                  length: 6,
+                  controller: PhoneNumberControllers.otpCon,
+                  focusedPinTheme: focusedPinTheme,
+                  // validator: (s) {
+                  //   return s == '2222' ? null : 'Pin is incorrect';
+                  // },
+                  pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                  showCursor: true,
+                  onCompleted: (pin) {
+                    verifyNow();
+                  },
+                ),
+              ),
+            ),
+            FadeSlideCustomAnimation(
+              delay: .1,
+              isRight: lang == 'ar' ? true : false,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, h * .05, 0, h * .05),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(str.o_dont,
+                        style: getRegularStyle(
+                            color: const Color(0xff9f9f9f), fontSize: 15)),
+                    InkWell(
+                      onTap: () async {
+                        getOtp(context, {otpProvider.countryCode},
+                            {otpProvider.phoneNo}, true);
+                        setState(() {
+                          isResendButtonClicked = true;
+                        });
+                        await Future.delayed(const Duration(seconds: 2));
+                        setState(() {
+                          isResendButtonClicked = false;
+                        });
+                      },
+                      child: isResendButtonClicked
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: ColorManager.primary3,
+                                backgroundColor: ColorManager.whiteColor,
+                              ),
+                            )
+                          : Text(str.o_resend,
+                              style: getRegularStyle(
+                                  color: ColorManager.primary, fontSize: 15)),
+                    ),
+                  ],
+                ),
               ),
             ),
 
             // * Verify Now Button
-            Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 5,
-                      color: Colors.grey.shade400,
-                      offset: const Offset(6, 6),
-                    ),
-                  ],
-                ),
-                width: 220,
-                height: 50,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(elevation: 0),
-                    onPressed: verifyNow,
-                    child: loading
-                        ? const CircularProgressIndicator(
-                            color: ColorManager.primary3,
-                            backgroundColor: ColorManager.whiteColor,
-                          )
-                        : Text(
-                            str.o_verify,
-                            style: getRegularStyle(
-                                color: ColorManager.whiteText, fontSize: 18),
-                          ))),
-
+            FadeSlideCustomAnimation(
+              isRight: lang == 'ar' ? true : false,
+              delay: .1,
+              child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 5,
+                        color: Colors.grey.shade400,
+                        offset: const Offset(6, 6),
+                      ),
+                    ],
+                  ),
+                  width: 220,
+                  height: 50,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(elevation: 0),
+                      onPressed: verifyNow,
+                      child: loading
+                          ? const CircularProgressIndicator(
+                              color: ColorManager.primary3,
+                              backgroundColor: ColorManager.whiteColor,
+                            )
+                          : Text(
+                              str.o_verify,
+                              style: getRegularStyle(
+                                  color: ColorManager.whiteText, fontSize: 18),
+                            ))),
+            ),
             SizedBox(
               height: Responsive.isMobile(context) ? h * .24 : h * .04,
             ),

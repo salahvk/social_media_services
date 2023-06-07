@@ -5,7 +5,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hive/hive.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
-// import 'package:screenshot/screenshot.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:social_media_services/responsive/responsive_width.dart';
 import 'package:social_media_services/components/assets_manager.dart';
 import 'package:social_media_services/components/color_manager.dart';
@@ -13,6 +13,7 @@ import 'package:social_media_services/components/styles_manager.dart';
 import 'package:social_media_services/screens/home_page.dart';
 import 'package:social_media_services/screens/messagePage.dart';
 import 'package:social_media_services/screens/serviceHome.dart';
+import 'package:social_media_services/utils/pdfApi.dart';
 import 'package:social_media_services/widgets/custom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -29,7 +30,7 @@ class _PaymentFailurePageState extends State<PaymentFailurePage> {
   final player = AudioPlayer();
   bool isProgress = true;
   String lang = '';
-  // ScreenshotController screenshotController = ScreenshotController();
+  ScreenshotController screenshotController = ScreenshotController();
   bool isLoading = false;
 
   // paySuccessSound() async {
@@ -153,81 +154,84 @@ class _PaymentFailurePageState extends State<PaymentFailurePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        isProgress
-                            ? const SizedBox(
-                                height: 280,
-                                width: 280,
-                                child: Center(
-                                  child: SizedBox(
-                                      height: 90,
-                                      width: 90,
-                                      child: CircularProgressIndicator(
-                                        backgroundColor: ColorManager.primary,
-                                        color: ColorManager.whiteColor,
-                                        strokeWidth: 5,
-                                      )),
-                                ))
-                            : SizedBox(
-                                height: 180,
-                                child: Stack(
-                                  alignment: AlignmentDirectional.center,
-                                  children: [
-                                    LottieBuilder.asset(
-                                      // fit: BoxFit.fitWidth,
-                                      ImageAssets.paymentFailure,
-                                      repeat: false,
-                                    ),
-                                  ],
+                    Screenshot(
+                      controller: screenshotController,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          isProgress
+                              ? const SizedBox(
+                                  height: 280,
+                                  width: 280,
+                                  child: Center(
+                                    child: SizedBox(
+                                        height: 90,
+                                        width: 90,
+                                        child: CircularProgressIndicator(
+                                          backgroundColor: ColorManager.primary,
+                                          color: ColorManager.whiteColor,
+                                          strokeWidth: 5,
+                                        )),
+                                  ))
+                              : SizedBox(
+                                  height: 180,
+                                  child: Stack(
+                                    alignment: AlignmentDirectional.center,
+                                    children: [
+                                      LottieBuilder.asset(
+                                        // fit: BoxFit.fitWidth,
+                                        ImageAssets.paymentFailure,
+                                        repeat: false,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                        Text(
-                          // lang == 'ar'
-                          //     ? str.su_title
-                          //     : 'Your payment was successfully processed\nDetail of transaction are included',
-                          str.pay_fail,
-                          textAlign: TextAlign.center,
-                          style: getRegularStyle(
-                              color: ColorManager.errorRed, fontSize: 16),
-                        ),
-                        // Text(
-                        //   str.su_title_1,
-                        //   textAlign: TextAlign.center,
-                        //   style: getRegularStyle(
-                        //       color: ColorManager.paymentPageColor1,
-                        //       fontSize: 16),
-                        // ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        // PaymentListTile(
-                        //     text1: str.su_date, text2: '25/08/2022'),
-                        // PaymentListTile(
-                        //     text1: str.su_service_fee,
-                        //     text2: "\$135.00 OMR"),
-                        // PaymentListTile(
-                        //     text1: str.su_discount,
-                        //     text2: '\$7.00 OMR = 5%'),
-                        // PaymentListTile(
-                        //   text1: str.su_vat,
-                        //   text2: '\$12.00 OMR = 8%',
-                        // ),
-                        // PaymentListTile(
-                        //   text1: str.su_mobile,
-                        //   text2: '+968 9526 123456',
-                        // ),
-                        // PaymentListTile(
-                        //   text1: str.su_exp,
-                        //   text2: '25/09/2022',
-                        // ),
-                        // const SizedBox(
-                        //   height: 30,
-                        // ),
-                      ],
+                          Text(
+                            // lang == 'ar'
+                            //     ? str.su_title
+                            //     : 'Your payment was successfully processed\nDetail of transaction are included',
+                            str.pay_fail,
+                            textAlign: TextAlign.center,
+                            style: getRegularStyle(
+                                color: ColorManager.errorRed, fontSize: 16),
+                          ),
+                          // Text(
+                          //   str.su_title_1,
+                          //   textAlign: TextAlign.center,
+                          //   style: getRegularStyle(
+                          //       color: ColorManager.paymentPageColor1,
+                          //       fontSize: 16),
+                          // ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          // PaymentListTile(
+                          //     text1: str.su_date, text2: '25/08/2022'),
+                          // PaymentListTile(
+                          //     text1: str.su_service_fee,
+                          //     text2: "\$135.00 OMR"),
+                          // PaymentListTile(
+                          //     text1: str.su_discount,
+                          //     text2: '\$7.00 OMR = 5%'),
+                          // PaymentListTile(
+                          //   text1: str.su_vat,
+                          //   text2: '\$12.00 OMR = 8%',
+                          // ),
+                          // PaymentListTile(
+                          //   text1: str.su_mobile,
+                          //   text2: '+968 9526 123456',
+                          // ),
+                          // PaymentListTile(
+                          //   text1: str.su_exp,
+                          //   text2: '25/09/2022',
+                          // ),
+                          // const SizedBox(
+                          //   height: 30,
+                          // ),
+                        ],
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -265,18 +269,18 @@ class _PaymentFailurePageState extends State<PaymentFailurePage> {
     setState(() {
       isLoading = true;
     });
-    // screenshotController
-    //     .capture(delay: const Duration(milliseconds: 10))
-    //     .then((capturedImage) async {
-    //   final pdfFile = await PdfApi.generateCenteredText(
-    //     capturedImage,
-    //   );
-    //   await PdfApi.openFile(pdfFile);
-    //   setState(() {
-    //     isLoading = false;
-    //   });
-    // }).catchError((onError) {
-    //   print(onError);
-    // });
+    screenshotController
+        .capture(delay: const Duration(milliseconds: 10))
+        .then((capturedImage) async {
+      final pdfFile = await PdfApi.generateCenteredText(
+        capturedImage,
+      );
+      await PdfApi.openFile(pdfFile);
+      setState(() {
+        isLoading = false;
+      });
+    }).catchError((onError) {
+      print(onError);
+    });
   }
 }

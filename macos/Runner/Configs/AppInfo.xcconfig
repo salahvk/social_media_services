@@ -8,7 +8,7 @@
 PRODUCT_NAME = social_media_services
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.tuwconnect.servises
+PRODUCT_BUNDLE_IDENTIFIER = com.tuwconnect.services
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2022 com.example. All rights reserved.

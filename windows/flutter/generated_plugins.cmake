@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_windows
   geolocator_windows
+  network_info_plus
   permission_handler_windows
   platform_device_id_windows
   record_windows

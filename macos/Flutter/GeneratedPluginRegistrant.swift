@@ -10,7 +10,7 @@ import audioplayers_darwin
 import geolocator_apple
 import just_audio
 import network_info_plus
-import path_provider_foundation
+import path_provider_macos
 import platform_device_id
 import platform_device_id_macos
 import record_macos

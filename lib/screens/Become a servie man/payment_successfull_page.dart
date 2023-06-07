@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-// import 'package:screenshot/screenshot.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:social_media_services/providers/data_provider.dart';
 import 'package:social_media_services/components/assets_manager.dart';
 import 'package:social_media_services/components/color_manager.dart';
@@ -15,6 +15,7 @@ import 'package:social_media_services/responsive/responsive_width.dart';
 import 'package:social_media_services/screens/home_page.dart';
 import 'package:social_media_services/screens/messagePage.dart';
 import 'package:social_media_services/screens/serviceHome.dart';
+import 'package:social_media_services/utils/pdfApi.dart';
 import 'package:social_media_services/widgets/custom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:social_media_services/widgets/payment_custom_listTile.dart';
@@ -32,7 +33,7 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
   final player = AudioPlayer();
   bool isProgress = true;
   String lang = '';
-  // ScreenshotController screenshotController = ScreenshotController();
+  ScreenshotController screenshotController = ScreenshotController();
   bool isLoading = false;
 
   paySuccessSound() async {
@@ -64,100 +65,102 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
     final mobWth = ResponsiveWidth.isMobile(context);
     final smobWth = ResponsiveWidth.issMobile(context);
     return Scaffold(
-        drawerEnableOpenDragGesture: false,
-        endDrawer: SizedBox(
-          height: size.height * 0.825,
-          width: mobWth
-              ? w * 0.6
-              : smobWth
-                  ? w * .7
-                  : w * .75,
-          child: const CustomDrawer(),
-        ),
-        // * Custom bottom Nav
-        bottomNavigationBar: Stack(
-          children: [
-            Container(
-              height: 45,
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  blurRadius: 5.0,
-                  color: Colors.grey.shade400,
-                  offset: const Offset(6, 1),
+      drawerEnableOpenDragGesture: false,
+      endDrawer: SizedBox(
+        height: size.height * 0.825,
+        width: mobWth
+            ? w * 0.6
+            : smobWth
+                ? w * .7
+                : w * .75,
+        child: const CustomDrawer(),
+      ),
+      // * Custom bottom Nav
+      bottomNavigationBar: Stack(
+        children: [
+          Container(
+            height: 45,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                blurRadius: 5.0,
+                color: Colors.grey.shade400,
+                offset: const Offset(6, 1),
+              ),
+            ]),
+          ),
+          SizedBox(
+            height: 44,
+            child: GNav(
+              tabMargin: const EdgeInsets.symmetric(
+                vertical: 0,
+              ),
+              gap: 0,
+              backgroundColor: ColorManager.whiteColor,
+              mainAxisAlignment: MainAxisAlignment.center,
+              activeColor: ColorManager.grayDark,
+              iconSize: 24,
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              duration: const Duration(milliseconds: 400),
+              tabBackgroundColor: ColorManager.primary.withOpacity(0.4),
+              color: ColorManager.black,
+              tabs: [
+                GButton(
+                  icon: FontAwesomeIcons.message,
+                  leading: SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: SvgPicture.asset(ImageAssets.homeIconSvg),
+                  ),
                 ),
-              ]),
-            ),
-            SizedBox(
-              height: 44,
-              child: GNav(
-                tabMargin: const EdgeInsets.symmetric(
-                  vertical: 0,
-                ),
-                gap: 0,
-                backgroundColor: ColorManager.whiteColor,
-                mainAxisAlignment: MainAxisAlignment.center,
-                activeColor: ColorManager.grayDark,
-                iconSize: 24,
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                duration: const Duration(milliseconds: 400),
-                tabBackgroundColor: ColorManager.primary.withOpacity(0.4),
-                color: ColorManager.black,
-                tabs: [
-                  GButton(
-                    icon: FontAwesomeIcons.message,
-                    leading: SizedBox(
+                GButton(
+                  icon: FontAwesomeIcons.message,
+                  leading: SizedBox(
                       width: 24,
                       height: 24,
-                      child: SvgPicture.asset(ImageAssets.homeIconSvg),
-                    ),
-                  ),
-                  GButton(
-                    icon: FontAwesomeIcons.message,
-                    leading: SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: SvgPicture.asset(ImageAssets.chatIconSvg)),
-                  ),
-                ],
-                haptic: true,
-                selectedIndex: _selectedIndex,
-                onTabChange: (index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
-              ),
+                      child: SvgPicture.asset(ImageAssets.chatIconSvg)),
+                ),
+              ],
+              haptic: true,
+              selectedIndex: _selectedIndex,
+              onTabChange: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
             ),
-            Positioned(
-                left: lang == 'ar' ? 5 : null,
-                right: lang != 'ar' ? 5 : null,
-                bottom: 0,
-                child: Builder(
-                  builder: (context) => InkWell(
-                    onTap: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Icon(
-                        Icons.menu,
-                        size: 25,
-                        color: ColorManager.black,
-                      ),
+          ),
+          Positioned(
+              left: lang == 'ar' ? 5 : null,
+              right: lang != 'ar' ? 5 : null,
+              bottom: 0,
+              child: Builder(
+                builder: (context) => InkWell(
+                  onTap: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.menu,
+                      size: 25,
+                      color: ColorManager.black,
                     ),
                   ),
-                ))
-          ],
-        ),
-        body: _selectedIndex != 2
-            ? _screens[_selectedIndex]
-            : SafeArea(
-                child: SingleChildScrollView(
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Column(
+                ),
+              ))
+        ],
+      ),
+      body: _selectedIndex != 2
+          ? _screens[_selectedIndex]
+          : SafeArea(
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Screenshot(
+                        controller: screenshotController,
+                        child: Column(
                           children: [
                             isProgress
                                 ? const SizedBox(
@@ -261,7 +264,7 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
                                       .toString() ??
                                   '',
                             ),
-
+// str.su_date
                             PaymentListTile(
                                 text1: str.su_service_fee,
                                 text2: provider.paymentSuccess?.orderDetails
@@ -290,71 +293,73 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
                             ),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(context,
-                                      MaterialPageRoute(builder: (ctx) {
-                                    return const HomePage(
-                                      selectedIndex: 0,
-                                    );
-                                  }));
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        13, 0, 13, 0)),
-                                child: Text(
-                                  str.su_home,
-                                  style: getMediumtStyle(
-                                      color: ColorManager.whiteText,
-                                      fontSize: 14),
-                                )),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            ElevatedButton(
-                                onPressed: generatePdf,
-                                style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        13, 0, 13, 0)),
-                                child: isLoading
-                                    ? const CircularProgressIndicator(
-                                        color: ColorManager.primary,
-                                        backgroundColor: ColorManager.primary3,
-                                      )
-                                    : Text(
-                                        str.su_save_pdf,
-                                        style: getMediumtStyle(
-                                            color: ColorManager.whiteText,
-                                            fontSize: 14),
-                                      ))
-                          ],
-                        )
-                      ],
-                    ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (ctx) {
+                                  return const HomePage(
+                                    selectedIndex: 0,
+                                  );
+                                }));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(13, 0, 13, 0)),
+                              child: Text(
+                                str.su_home,
+                                style: getMediumtStyle(
+                                    color: ColorManager.whiteText,
+                                    fontSize: 14),
+                              )),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          ElevatedButton(
+                              onPressed: generatePdf,
+                              style: ElevatedButton.styleFrom(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(13, 0, 13, 0)),
+                              child: isLoading
+                                  ? const CircularProgressIndicator(
+                                      color: ColorManager.primary,
+                                      backgroundColor: ColorManager.primary3,
+                                    )
+                                  : Text(
+                                      str.su_save_pdf,
+                                      style: getMediumtStyle(
+                                          color: ColorManager.whiteText,
+                                          fontSize: 14),
+                                    ))
+                        ],
+                      )
+                    ],
                   ),
                 ),
-              ));
+              ),
+            ),
+    );
   }
 
   generatePdf() {
     setState(() {
       isLoading = true;
     });
-    // screenshotController
-    //     .capture(delay: const Duration(milliseconds: 10))
-    //     .then((capturedImage) async {
-    //   final pdfFile = await PdfApi.generateCenteredText(
-    //     capturedImage,
-    //   );
-    //   await PdfApi.openFile(pdfFile);
-    //   setState(() {
-    //     isLoading = false;
-    //   });
-    // }).catchError((onError) {
-    //   print(onError);
-    // });
+    screenshotController
+        .capture(delay: const Duration(milliseconds: 10))
+        .then((capturedImage) async {
+      final pdfFile = await PdfApi.generateCenteredText(
+        capturedImage,
+      );
+      await PdfApi.openFile(pdfFile);
+      setState(() {
+        isLoading = false;
+      });
+    }).catchError((onError) {
+      print(onError);
+    });
   }
 }

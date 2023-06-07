@@ -528,11 +528,11 @@ class _UserAddressUpdateState extends State<UserAddressUpdate> {
                                 child: DropdownButtonHideUnderline(
                                   child: DropdownButton2<Countries>(
                                       isExpanded: true,
-                                      // icon: const Icon(
-                                      //   Icons.keyboard_arrow_down,
-                                      //   size: 35,
-                                      //   color: ColorManager.black,
-                                      // ),
+                                      icon: const Icon(
+                                        Icons.keyboard_arrow_down,
+                                        size: 35,
+                                        color: ColorManager.black,
+                                      ),
                                       hint: Text(str.ae_country_h,
                                           style: getRegularStyle(
                                               color: const Color.fromARGB(
@@ -601,68 +601,44 @@ class _UserAddressUpdateState extends State<UserAddressUpdate> {
                                             context, selectedValue?.countryId);
                                         setState(() {});
                                       },
-                                      buttonStyleData: const ButtonStyleData(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            12, 0, 8, 0),
-                                        height: 40,
-                                        // width: 140,
-                                      ),
-                                      menuItemStyleData:
-                                          const MenuItemStyleData(
-                                        height: 40,
-                                        padding:
-                                            EdgeInsets.fromLTRB(12, 0, 12, 0),
-                                      ),
-                                      dropdownStyleData: DropdownStyleData(
-                                        maxHeight: size.height * .6,
-                                      ),
-                                      dropdownSearchData: DropdownSearchData(
-                                        searchController: AddressEditControllers
-                                            .searchController,
-                                        searchInnerWidget: Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 8,
-                                            bottom: 4,
-                                            right: 8,
-                                            left: 8,
-                                          ),
-                                          child: TextFormField(
-                                            controller: AddressEditControllers
-                                                .searchController,
-                                            decoration: InputDecoration(
-                                              isDense: true,
-                                              contentPadding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 10,
-                                                vertical: 8,
-                                              ),
-                                              hintText: str.s_search_country,
-                                              hintStyle:
-                                                  const TextStyle(fontSize: 12),
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
+                                      buttonHeight: 40,
+                                      dropdownMaxHeight: size.height * .6,
+                                      // buttonWidth: 140,
+                                      itemHeight: 40,
+                                      buttonPadding: const EdgeInsets.fromLTRB(
+                                          12, 0, 8, 0),
+                                      // dropdownWidth: size.width,
+                                      itemPadding: const EdgeInsets.fromLTRB(
+                                          12, 0, 12, 0),
+                                      searchController: AddressEditControllers
+                                          .searchController,
+                                      searchInnerWidget: Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 8,
+                                          bottom: 4,
+                                          right: 8,
+                                          left: 8,
+                                        ),
+                                        child: TextFormField(
+                                          controller: AddressEditControllers
+                                              .searchController,
+                                          decoration: InputDecoration(
+                                            isDense: true,
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                              vertical: 8,
+                                            ),
+                                            hintText: str.s_search_country,
+                                            hintStyle:
+                                                const TextStyle(fontSize: 12),
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
                                             ),
                                           ),
                                         ),
-                                        searchMatchFn: (item, searchValue) {
-                                          return (item.value!.countryName
-                                              .toString()
-                                              .toLowerCase()
-                                              .contains(searchValue));
-                                        },
                                       ),
-                                      // buttonHeight: 40,
-                                      // dropdownMaxHeight: size.height * .6,
-                                      // buttonWidth: 140,
-                                      // itemHeight: 40,
-                                      // buttonPadding: const EdgeInsets.fromLTRB(
-                                      //     12, 0, 8, 0),
-                                      // dropdownWidth: size.width,
-                                      // itemPadding: const EdgeInsets.fromLTRB(
-                                      //     12, 0, 12, 0),
-
                                       customButton: selectedValue == null
                                           ? Row(
                                               children: [
@@ -689,7 +665,12 @@ class _UserAddressUpdateState extends State<UserAddressUpdate> {
                                                 ),
                                               ],
                                             ),
-
+                                      searchMatchFn: (item, searchValue) {
+                                        return (item.value.countryName
+                                            .toString()
+                                            .toLowerCase()
+                                            .contains(searchValue));
+                                      },
                                       //This to clear the search value when you close the menu
                                       onMenuStateChange: (isOpen) {
                                         if (!isOpen) {
@@ -730,11 +711,11 @@ class _UserAddressUpdateState extends State<UserAddressUpdate> {
                                       child: DropdownButton2(
                                         isExpanded: true,
                                         // focusNode: nfocus,
-                                        // icon: const Icon(
-                                        //   Icons.keyboard_arrow_down,
-                                        //   size: 35,
-                                        //   color: ColorManager.black,
-                                        // ),
+                                        icon: const Icon(
+                                          Icons.keyboard_arrow_down,
+                                          size: 35,
+                                          color: ColorManager.black,
+                                        ),
                                         hint: Text(str.p_region_h,
                                             style: getRegularStyle(
                                                 color: const Color.fromARGB(
@@ -760,31 +741,16 @@ class _UserAddressUpdateState extends State<UserAddressUpdate> {
                                           });
                                           // s(selectedValue);
                                         },
-                                        buttonStyleData: const ButtonStyleData(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              12, 0, 8, 0),
-                                          height: 50,
-                                          // width: 140,
-                                        ),
-                                        menuItemStyleData:
-                                            const MenuItemStyleData(
-                                          height: 40,
-                                          padding:
-                                              EdgeInsets.fromLTRB(12, 0, 12, 0),
-                                        ),
-                                        dropdownStyleData: DropdownStyleData(
-                                          maxHeight: size.height * .6,
-                                        ),
-                                        // buttonHeight: 50,
-                                        // dropdownMaxHeight: size.height * .6,
+                                        buttonHeight: 50,
+                                        dropdownMaxHeight: size.height * .6,
                                         // buttonWidth: 140,
-                                        // itemHeight: 40,
-                                        // buttonPadding:
-                                        //     const EdgeInsets.fromLTRB(
-                                        //         12, 0, 8, 0),
-                                        // // dropdownWidth: size.width,
-                                        // itemPadding: const EdgeInsets.fromLTRB(
-                                        //     12, 0, 12, 0),
+                                        itemHeight: 40,
+                                        buttonPadding:
+                                            const EdgeInsets.fromLTRB(
+                                                12, 0, 8, 0),
+                                        // dropdownWidth: size.width,
+                                        itemPadding: const EdgeInsets.fromLTRB(
+                                            12, 0, 12, 0),
                                         // searchController:
                                         //     AddressEditControllers
                                         //         .searchController,
